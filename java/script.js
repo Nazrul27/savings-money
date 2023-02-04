@@ -19,10 +19,6 @@ function IncomeInput(){
     const totalExpense = expensesInput();
     const  spendMoney = incomeMoney - totalExpense;
     return spendMoney;
-    if(totalExpense > incomeMoney){
-        alert('Your expenses Money is greater than income money');
-        return;
-    }
 }
 //add saveings
 function addSavings(){
@@ -44,16 +40,33 @@ function addSavings(){
         return ;
     }
     
+    
 
+}
+// If expenses is greater than Income money
+function errorMessage(){
+    const totalIncome = parseFloat(document.getElementById('total-income').value);
+    const totalExpense = expensesInput();
+    if(totalExpense > totalIncome){
+        alert('Your expenses is greater that Your income money');
+        const expensesError = document.getElementById('expenses');
+        expensesError.innerText = ''
+        const balanceError = document.getElementById('balance');
+        balanceError.innerText = '';
+        return;
+    }
 }
 // Calculate
 document.getElementById('calculate').addEventListener('click', function(){
+     
     const totalExpense = expensesInput();
     const expenses = document.getElementById('expenses');
     expenses.innerText = totalExpense;
     const balance = IncomeInput();
     const balanceField = document.getElementById('balance');
     balanceField.innerText = balance;
+    errorMessage();
+    
 })
 
 // Savings
